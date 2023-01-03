@@ -23,7 +23,7 @@ public:
         string asm_ins;
         vector<string> myString;
         ifstream inFile;
-        inFile.open("E:/Computer_Organization/Project/Pipeline/Forwarding/Example7/asm.txt");
+        inFile.open("E:/Computer_Organization/Project/Pipeline/Stall/Example1/asm.txt");
         if (inFile.is_open())
         {
             //* Read until no more lines in text file to read
@@ -45,7 +45,7 @@ public:
         }
         inFile.close();
 
-        ofstream outFile("E:/Computer_Organization/Project/Pipeline/Forwarding/Example7/input.txt");
+        ofstream outFile("E:/Computer_Organization/Project/Pipeline/Stall/Example1/input.txt");
         for (int i = 0; i < myString.size(); i++)
         {
             string encode;
@@ -156,7 +156,7 @@ public:
         outFile.close();
 
         //* 讀取input.txt
-        ifstream file("E:/Computer_Organization/Project/Pipeline/Forwarding/Example7/input.txt");
+        ifstream file("E:/Computer_Organization/Project/Pipeline/Stall/Example1/input.txt");
         string line;
         int i = 0;
         while (getline(file, line))

@@ -413,7 +413,7 @@ int main()
         //* IF Stage執行時
         if (current_state.IF_stage.implement)
         {
-            // 不管怎樣都先透過PC抓指令
+            //* 不管怎樣都先透過PC抓指令
 
             //* 透過IF的PC 讀取instruction memory(IM)的指令
             bitset<32> instruction = IM.read(current_state.IF_stage.PC);
@@ -455,21 +455,20 @@ int main()
             //* 32bits個1的指令表示結束
             if (instruction.to_string<char, std::string::traits_type, std::string::allocator_type>() == "11111111111111111111111111111111")
             {
-                current_state.IF_stage.implement = 0;
-                next_state.IF_stage.implement = 0;
+                current_state.IF_stage.implement = next_state.IF_stage.implement = 0;
 
                 next_state.ID_stage.ins_name = current_state.IF_stage.ins_name;
                 next_state.ID_stage.implement = 0;
             }
-            // 不是 halt 的狀況
+            //* 不是 halt 的狀況
             else
             {
-                //* ID時hazzard發生需要stall 因此IF也需要跟著stall
+                //* ID時hazard發生需要stall 因此IF也需要跟著stall
                 if (current_state.ID_stage.stall)
                 {
                     next_state.IF_stage = current_state.IF_stage; // 停留在IF
                 }
-                // * hazzard沒發生
+                // * hazard沒發生
                 else
                 {
                     //* PC = PC + 4
@@ -479,7 +478,7 @@ int main()
                 }
             }
         }
-        // IF 沒implement時 將implement = false的狀態傳遞下去
+        //* IF 沒implement時 將implement = false的狀態傳遞下去
         else
         {
             next_state.ID_stage.implement = current_state.IF_stage.implement;
