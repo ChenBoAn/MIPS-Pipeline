@@ -1,0 +1,105 @@
+Cycle 1
+add: IF
+
+Cycle 2
+add: ID
+add: IF
+
+Cycle 3
+add: EX 1 0 0 0 0 1 0
+add: ID
+sub: IF
+
+Cycle 4
+add: MEM 0 0 0 1 0
+add: ID
+sub: IF
+
+Cycle 5
+add: WB 1 0
+add: ID
+sub: IF
+
+Cycle 6
+add: EX 1 0 0 0 0 1 0
+sub: ID
+beq: IF
+
+Cycle 7
+add: MEM 0 0 0 1 0
+sub: ID
+beq: IF
+
+Cycle 8
+add: WB 1 0
+sub: ID
+beq: IF
+
+Cycle 9
+sub: EX 1 0 0 0 0 1 0
+beq: ID
+add: IF
+
+Cycle 10
+sub: MEM 0 0 0 1 0
+beq: ID
+add: IF
+
+Cycle 11
+sub: WB 1 0
+beq: ID
+add: IF
+
+Cycle 12
+beq: EX X 0 1 0 0 0 X
+sub: IF
+
+Cycle 13
+beq: MEM 1 0 0 0 X
+sub: ID
+beq: IF
+
+Cycle 14
+beq: WB 0 X
+sub: EX 1 0 0 0 0 1 0
+beq: ID
+add: IF
+
+Cycle 15
+sub: MEM 0 0 0 1 0
+beq: ID
+add: IF
+
+Cycle 16
+sub: WB 1 0
+beq: ID
+add: IF
+
+Cycle 17
+beq: EX X 0 1 0 0 0 X
+add: ID
+sw: IF
+
+Cycle 18
+beq: MEM 1 0 0 0 X
+add: EX 1 0 0 0 0 1 0
+sw: ID
+
+Cycle 19
+beq: WB 0 X
+add: MEM 0 0 0 1 0
+sw: ID
+
+Cycle 20
+add: WB 1 0
+sw: ID
+
+Cycle 21
+sw: EX X 1 0 0 1 0 X
+
+Cycle 22
+sw: MEM 0 0 1 0 X
+
+Cycle 23
+sw: WB 0 X
+
