@@ -19,24 +19,32 @@ sw: IF
 Cycle 5
 lw: WB 1 1
 lw: MEM 0 1 0 1 1
-add: EX 1 0 0 0 0 1 0
-sw: ID
+add: ID
+sw: IF
 
 Cycle 6
 lw: WB 1 1
-add: MEM 0 0 0 1 0
-sw: ID
+add: ID
+sw: IF
 
 Cycle 7
-add: WB 1 0
+add: EX 1 0 0 0 0 1 0
 sw: ID
 
 Cycle 8
-sw: EX X 1 0 0 1 0 X
+add: MEM 0 0 0 1 0
+sw: ID
 
 Cycle 9
-sw: MEM 0 0 1 0 X
+add: WB 1 0
+sw: ID
 
 Cycle 10
+sw: EX X 1 0 0 1 0 X
+
+Cycle 11
+sw: MEM 0 0 1 0 X
+
+Cycle 12
 sw: WB 0 X
 

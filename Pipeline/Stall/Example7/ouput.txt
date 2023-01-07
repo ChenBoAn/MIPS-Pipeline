@@ -1,0 +1,58 @@
+Cycle 1
+add: IF
+
+Cycle 2
+add: ID
+add: IF
+
+Cycle 3
+add: EX 1 0 0 0 0 1 0
+add: ID
+add: IF
+
+Cycle 4
+add: MEM 0 0 0 1 0
+add: ID
+add: IF
+
+Cycle 5
+add: WB 1 0
+add: ID
+add: IF
+
+Cycle 6
+add: EX 1 0 0 0 0 1 0
+add: ID
+sw: IF
+
+Cycle 7
+add: MEM 0 0 0 1 0
+add: ID
+sw: IF
+
+Cycle 8
+add: WB 1 0
+add: ID
+sw: IF
+
+Cycle 9
+add: EX 1 0 0 0 0 1 0
+sw: ID
+
+Cycle 10
+add: MEM 0 0 0 1 0
+sw: ID
+
+Cycle 11
+add: WB 1 0
+sw: ID
+
+Cycle 12
+sw: EX X 1 0 0 1 0 X
+
+Cycle 13
+sw: MEM 0 0 1 0 X
+
+Cycle 14
+sw: WB 0 X
+
