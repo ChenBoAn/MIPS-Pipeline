@@ -52,7 +52,7 @@ public:
     //* 輸出memory的state(word為單位)
     void save_file()
     {
-        ofstream file("E:/Computer_Organization/Project/Pipeline/Stall/Example8/memory_result.txt", ios_base::out | ios_base::app);
+        ofstream file("./output/memory_result.txt", ios_base::out | ios_base::app);
         int words = mem_size / 4;
         for (int i = 0; i < words; i++)
         {

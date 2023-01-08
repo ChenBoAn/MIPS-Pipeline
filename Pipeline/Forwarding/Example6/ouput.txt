@@ -1,0 +1,40 @@
+Cycle 1
+lw: IF
+
+Cycle 2
+lw: ID
+beq: IF
+
+Cycle 3
+lw: EX 0 1 0 1 0 1 1
+beq: ID
+sub: IF
+
+Cycle 4
+lw: MEM 0 1 0 1 1
+beq: ID
+sub: IF
+
+Cycle 5
+lw: WB 1 1
+beq: ID
+sub: IF
+
+Cycle 6
+beq: EX X 0 1 0 0 0 X
+sw: IF
+
+Cycle 7
+beq: MEM 1 0 0 0 X
+sw: ID
+
+Cycle 8
+beq: WB 0 X
+sw: EX X 1 0 0 1 0 X
+
+Cycle 9
+sw: MEM 0 0 1 0 X
+
+Cycle 10
+sw: WB 0 X
+

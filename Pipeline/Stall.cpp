@@ -13,7 +13,7 @@ using namespace std;
 
 void save_state(int cycle, State state)
 {
-    ofstream file("E:/Computer_Organization/Project/Pipeline/Stall/Example8/state.txt", ios_base::out | ios_base::app);
+    ofstream file("./output/state.txt", ios_base::out | ios_base::app);
 
     file << "Cycle " << cycle << endl;
 
@@ -77,7 +77,7 @@ void save_state(int cycle, State state)
 
 void output(int cycle, State state)
 {
-    ofstream file("E:/Computer_Organization/Project/Pipeline/Stall/Example8/ouput.txt", ios_base::out | ios_base::app);
+    ofstream file("./output/ouput.txt", ios_base::out | ios_base::app);
 
     file << "Cycle " << cycle << endl;
 

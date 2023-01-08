@@ -8,33 +8,40 @@ lw: IF
 Cycle 3
 lw: EX 0 1 0 1 0 1 1
 lw: ID
-add: IF
+beq: IF
 
 Cycle 4
 lw: MEM 0 1 0 1 1
 lw: EX 0 1 0 1 0 1 1
-add: ID
-sw: IF
+beq: ID
+add: IF
 
 Cycle 5
 lw: WB 1 1
 lw: MEM 0 1 0 1 1
-add: ID
-sw: IF
+beq: ID
+add: IF
 
 Cycle 6
 lw: WB 1 1
-add: EX 1 0 0 0 0 1 0
-sw: ID
+beq: ID
+add: IF
 
 Cycle 7
-add: MEM 0 0 0 1 0
-sw: EX X 1 0 0 1 0 X
+beq: EX X 0 1 0 0 0 X
+sw: IF
 
 Cycle 8
-add: WB 1 0
-sw: MEM 0 0 1 0 X
+beq: MEM 1 0 0 0 X
+sw: ID
 
 Cycle 9
+beq: WB 0 X
+sw: EX X 1 0 0 1 0 X
+
+Cycle 10
+sw: MEM 0 0 1 0 X
+
+Cycle 11
 sw: WB 0 X
 

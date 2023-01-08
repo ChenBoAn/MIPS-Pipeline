@@ -9,7 +9,6 @@ PC:	0
 instruction_name:	
 implement:	0
 ins:	00000000000000000000000000000000
-stall:	0
 
 [EX_stage]
 instruction_name:	
@@ -65,7 +64,6 @@ PC:	4
 instruction_name:	add
 implement:	1
 ins:	00000000001000100000100000100000
-stall:	0
 
 [EX_stage]
 instruction_name:	
@@ -121,7 +119,6 @@ PC:	8
 instruction_name:	add
 implement:	1
 ins:	00000000001000110000100000100000
-stall:	0
 
 [EX_stage]
 instruction_name:	add
@@ -177,7 +174,6 @@ PC:	12
 instruction_name:	add
 implement:	1
 ins:	00000000001001000000100000100000
-stall:	0
 
 [EX_stage]
 instruction_name:	add
@@ -225,7 +221,7 @@ MemtoReg:	0
 Cycle 5
 
 [IF_stage]
-instruction_name:	halt
+instruction_name:	
 implement:	0
 PC:	16
 
@@ -233,7 +229,6 @@ PC:	16
 instruction_name:	sw
 implement:	1
 ins:	10101100000000010000000000001000
-stall:	0
 
 [EX_stage]
 instruction_name:	add
@@ -286,10 +281,9 @@ implement:	0
 PC:	16
 
 [ID_stage]
-instruction_name:	halt
+instruction_name:	
 implement:	0
-ins:	11111111111111111111111111111111
-stall:	0
+ins:	10101100000000010000000000001000
 
 [EX_stage]
 instruction_name:	sw
@@ -342,10 +336,9 @@ implement:	0
 PC:	16
 
 [ID_stage]
-instruction_name:	halt
+instruction_name:	
 implement:	0
-ins:	11111111111111111111111111111111
-stall:	0
+ins:	10101100000000010000000000001000
 
 [EX_stage]
 instruction_name:	sw
@@ -355,7 +348,7 @@ rt:	00001
 Write_reg:	00001
 I_address:	0000000000001000
 Read_data1:	00000000000000000000000000000000
-Read_data2:	00000000000000000000000000000010
+Read_data2:	00000000000000000000000000000001
 ALUOp:	1
 type:	1
 RegDst:	X
@@ -398,10 +391,9 @@ implement:	0
 PC:	16
 
 [ID_stage]
-instruction_name:	halt
+instruction_name:	
 implement:	0
-ins:	11111111111111111111111111111111
-stall:	0
+ins:	10101100000000010000000000001000
 
 [EX_stage]
 instruction_name:	sw
@@ -411,7 +403,7 @@ rt:	00001
 Write_reg:	00001
 I_address:	0000000000001000
 Read_data1:	00000000000000000000000000000000
-Read_data2:	00000000000000000000000000000010
+Read_data2:	00000000000000000000000000000001
 ALUOp:	1
 type:	1
 RegDst:	X

@@ -40,7 +40,7 @@ public:
     //* 輸出register的state
     void save_file()
     {
-        ofstream file("E:/Computer_Organization/Project/Pipeline/Stall/Example8/register_result.txt", ios_base::out | ios_base::app);
+        ofstream file("./output/register_result.txt", ios_base::out | ios_base::app);
         for (int i = 0; i < reg_num; i++)
         {
             file << "$" << i << ": " << reg[i] << " " << bitset<32>(reg[i]).to_ulong() << endl;

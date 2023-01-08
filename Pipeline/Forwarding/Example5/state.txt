@@ -1,7 +1,7 @@
 Cycle 1
 
 [IF_stage]
-instruction_name:	lw
+instruction_name:	sub
 implement:	1
 PC:	0
 
@@ -56,14 +56,14 @@ MemtoReg:	0
 Cycle 2
 
 [IF_stage]
-instruction_name:	lw
+instruction_name:	beq
 implement:	1
 PC:	4
 
 [ID_stage]
-instruction_name:	lw
+instruction_name:	sub
 implement:	1
-ins:	10001100000000100000000000001000
+ins:	00000000100001000000100000100010
 
 [EX_stage]
 instruction_name:	
@@ -116,28 +116,28 @@ implement:	1
 PC:	8
 
 [ID_stage]
-instruction_name:	lw
+instruction_name:	beq
 implement:	1
-ins:	10001100000000110000000000010000
+ins:	00010000001000100000000000000010
 
 [EX_stage]
-instruction_name:	lw
+instruction_name:	sub
 implement:	1
-rs:	00000
-rt:	00010
-Write_reg:	00010
-I_address:	0000000000001000
-Read_data1:	00000000000000000000000000000000
+rs:	00100
+rt:	00100
+Write_reg:	00001
+I_address:	0000100000100010
+Read_data1:	00000000000000000000000000000001
 Read_data2:	00000000000000000000000000000001
-ALUOp:	1
-type:	1
-RegDst:	0
-ALUSrc:	1
+ALUOp:	0
+type:	0
+RegDst:	1
+ALUSrc:	0
 Branch:	0
-MemRead:	1
+MemRead:	0
 MemWrite:	0
 RegWrite:	1
-MemtoReg:	1
+MemtoReg:	0
 
 [MEM_stage]
 instruction_name:	
@@ -166,47 +166,47 @@ MemtoReg:	0
 Cycle 4
 
 [IF_stage]
-instruction_name:	sw
-implement:	1
-PC:	12
-
-[ID_stage]
 instruction_name:	add
 implement:	1
-ins:	00000000010000110010000000100000
+PC:	8
+
+[ID_stage]
+instruction_name:	beq
+implement:	1
+ins:	00010000001000100000000000000010
 
 [EX_stage]
-instruction_name:	lw
-implement:	1
-rs:	00000
-rt:	00011
-Write_reg:	00011
-I_address:	0000000000010000
-Read_data1:	00000000000000000000000000000000
-Read_data2:	00000000000000000000000000000001
-ALUOp:	1
-type:	1
-RegDst:	0
-ALUSrc:	1
-Branch:	0
-MemRead:	1
-MemWrite:	0
-RegWrite:	1
-MemtoReg:	1
-
-[MEM_stage]
-instruction_name:	lw
-implement:	1
-rs:	00000
+instruction_name:	beq
+implement:	0
+rs:	00001
 rt:	00010
 Write_reg:	00010
-ALU_result:	00000000000000000000000000001000
+I_address:	0000000000000010
+Read_data1:	00000000000000000000000000000001
+Read_data2:	00000000000000000000000000000001
+ALUOp:	0
+type:	1
+RegDst:	X
+ALUSrc:	0
+Branch:	1
+MemRead:	0
+MemWrite:	0
+RegWrite:	0
+MemtoReg:	X
+
+[MEM_stage]
+instruction_name:	sub
+implement:	1
+rs:	00100
+rt:	00100
+Write_reg:	00001
+ALU_result:	00000000000000000000000000000000
 Write_data:	00000000000000000000000000000001
 Branch:	0
-MemRead:	1
+MemRead:	0
 MemWrite:	0
 RegWrite:	1
-MemtoReg:	1
+MemtoReg:	0
 
 [WB_stage]
 instruction_name:	
@@ -221,149 +221,259 @@ MemtoReg:	0
 Cycle 5
 
 [IF_stage]
-instruction_name:	sw
+instruction_name:	lw
 implement:	1
 PC:	12
 
 [ID_stage]
 instruction_name:	add
 implement:	1
-ins:	00000000010000110010000000100000
+ins:	00000000011000110001000000100000
 
 [EX_stage]
-instruction_name:	add
-implement:	0
-rs:	00010
-rt:	00011
-Write_reg:	00100
-I_address:	0010000000100000
-Read_data1:	00000000000000000000000000000001
-Read_data2:	00000000000000000000000000000001
-ALUOp:	1
-type:	0
-RegDst:	1
-ALUSrc:	0
-Branch:	0
-MemRead:	0
-MemWrite:	0
-RegWrite:	1
-MemtoReg:	0
-
-[MEM_stage]
-instruction_name:	lw
+instruction_name:	beq
 implement:	1
-rs:	00000
-rt:	00011
-Write_reg:	00011
-ALU_result:	00000000000000000000000000010000
-Write_data:	00000000000000000000000000000001
-Branch:	0
-MemRead:	1
-MemWrite:	0
-RegWrite:	1
-MemtoReg:	1
-
-[WB_stage]
-instruction_name:	lw
-implement:	1
-rs:	00000
+rs:	00001
 rt:	00010
 Write_reg:	00010
-Write_data:	00000000000000000000000000000001
-RegWrite:	1
-MemtoReg:	1
-
-Cycle 6
-
-[IF_stage]
-instruction_name:	
-implement:	0
-PC:	16
-
-[ID_stage]
-instruction_name:	sw
-implement:	1
-ins:	10101100000001000000000000011000
-
-[EX_stage]
-instruction_name:	add
-implement:	1
-rs:	00010
-rt:	00011
-Write_reg:	00100
-I_address:	0010000000100000
+I_address:	0000000000000010
 Read_data1:	00000000000000000000000000000001
 Read_data2:	00000000000000000000000000000001
-ALUOp:	1
-type:	0
-RegDst:	1
-ALUSrc:	0
-Branch:	0
-MemRead:	0
-MemWrite:	0
-RegWrite:	1
-MemtoReg:	0
-
-[MEM_stage]
-instruction_name:	lw
-implement:	0
-rs:	00000
-rt:	00011
-Write_reg:	00011
-ALU_result:	00000000000000000000000000010000
-Write_data:	00000000000000000000000000000001
-Branch:	0
-MemRead:	1
-MemWrite:	0
-RegWrite:	1
-MemtoReg:	1
-
-[WB_stage]
-instruction_name:	lw
-implement:	1
-rs:	00000
-rt:	00011
-Write_reg:	00011
-Write_data:	00000000000000000000000000000001
-RegWrite:	1
-MemtoReg:	1
-
-Cycle 7
-
-[IF_stage]
-instruction_name:	
-implement:	0
-PC:	16
-
-[ID_stage]
-instruction_name:	
-implement:	0
-ins:	10101100000001000000000000011000
-
-[EX_stage]
-instruction_name:	sw
-implement:	1
-rs:	00000
-rt:	00100
-Write_reg:	00100
-I_address:	0000000000011000
-Read_data1:	00000000000000000000000000000000
-Read_data2:	00000000000000000000000000000010
-ALUOp:	1
+ALUOp:	0
 type:	1
 RegDst:	X
-ALUSrc:	1
-Branch:	0
+ALUSrc:	0
+Branch:	1
 MemRead:	0
-MemWrite:	1
+MemWrite:	0
 RegWrite:	0
 MemtoReg:	X
 
 [MEM_stage]
+instruction_name:	sub
+implement:	0
+rs:	00100
+rt:	00100
+Write_reg:	00001
+ALU_result:	00000000000000000000000000000000
+Write_data:	00000000000000000000000000000001
+Branch:	0
+MemRead:	0
+MemWrite:	0
+RegWrite:	1
+MemtoReg:	0
+
+[WB_stage]
+instruction_name:	sub
+implement:	1
+rs:	00100
+rt:	00100
+Write_reg:	00001
+Write_data:	00000000000000000000000000000000
+RegWrite:	1
+MemtoReg:	0
+
+Cycle 6
+
+[IF_stage]
 instruction_name:	add
 implement:	1
-rs:	00010
+PC:	16
+
+[ID_stage]
+instruction_name:	lw
+implement:	1
+ins:	10001100000000010000000000000100
+
+[EX_stage]
+instruction_name:	add
+implement:	1
+rs:	00011
 rt:	00011
+Write_reg:	00010
+I_address:	0001000000100000
+Read_data1:	00000000000000000000000000000001
+Read_data2:	00000000000000000000000000000001
+ALUOp:	1
+type:	0
+RegDst:	1
+ALUSrc:	0
+Branch:	0
+MemRead:	0
+MemWrite:	0
+RegWrite:	1
+MemtoReg:	0
+
+[MEM_stage]
+instruction_name:	beq
+implement:	1
+rs:	00001
+rt:	00010
+Write_reg:	00010
+ALU_result:	00000000000000000000000000000000
+Write_data:	00000000000000000000000000000001
+Branch:	1
+MemRead:	0
+MemWrite:	0
+RegWrite:	0
+MemtoReg:	X
+
+[WB_stage]
+instruction_name:	sub
+implement:	0
+rs:	00100
+rt:	00100
+Write_reg:	00001
+Write_data:	00000000000000000000000000000000
+RegWrite:	1
+MemtoReg:	0
+
+Cycle 7
+
+[IF_stage]
+instruction_name:	add
+implement:	0
+PC:	20
+
+[ID_stage]
+instruction_name:	add
+implement:	1
+ins:	00000000101001100010000000100000
+
+[EX_stage]
+instruction_name:	lw
+implement:	1
+rs:	00000
+rt:	00001
+Write_reg:	00001
+I_address:	0000000000000100
+Read_data1:	00000000000000000000000000000000
+Read_data2:	00000000000000000000000000000000
+ALUOp:	1
+type:	1
+RegDst:	0
+ALUSrc:	1
+Branch:	0
+MemRead:	1
+MemWrite:	0
+RegWrite:	1
+MemtoReg:	1
+
+[MEM_stage]
+instruction_name:	add
+implement:	1
+rs:	00011
+rt:	00011
+Write_reg:	00010
+ALU_result:	00000000000000000000000000000010
+Write_data:	00000000000000000000000000000001
+Branch:	0
+MemRead:	0
+MemWrite:	0
+RegWrite:	1
+MemtoReg:	0
+
+[WB_stage]
+instruction_name:	beq
+implement:	1
+rs:	00001
+rt:	00010
+Write_reg:	00010
+Write_data:	00000000000000000000000000000000
+RegWrite:	0
+MemtoReg:	X
+
+Cycle 8
+
+[IF_stage]
+instruction_name:	add
+implement:	0
+PC:	20
+
+[ID_stage]
+instruction_name:	add
+implement:	0
+ins:	00000000101001100010000000100000
+
+[EX_stage]
+instruction_name:	add
+implement:	1
+rs:	00101
+rt:	00110
+Write_reg:	00100
+I_address:	0010000000100000
+Read_data1:	00000000000000000000000000000001
+Read_data2:	00000000000000000000000000000001
+ALUOp:	1
+type:	0
+RegDst:	1
+ALUSrc:	0
+Branch:	0
+MemRead:	0
+MemWrite:	0
+RegWrite:	1
+MemtoReg:	0
+
+[MEM_stage]
+instruction_name:	lw
+implement:	1
+rs:	00000
+rt:	00001
+Write_reg:	00001
+ALU_result:	00000000000000000000000000000100
+Write_data:	00000000000000000000000000000000
+Branch:	0
+MemRead:	1
+MemWrite:	0
+RegWrite:	1
+MemtoReg:	1
+
+[WB_stage]
+instruction_name:	add
+implement:	1
+rs:	00011
+rt:	00011
+Write_reg:	00010
+Write_data:	00000000000000000000000000000010
+RegWrite:	1
+MemtoReg:	0
+
+Cycle 9
+
+[IF_stage]
+instruction_name:	add
+implement:	0
+PC:	20
+
+[ID_stage]
+instruction_name:	add
+implement:	0
+ins:	00000000101001100010000000100000
+
+[EX_stage]
+instruction_name:	add
+implement:	0
+rs:	00101
+rt:	00110
+Write_reg:	00100
+I_address:	0010000000100000
+Read_data1:	00000000000000000000000000000001
+Read_data2:	00000000000000000000000000000001
+ALUOp:	1
+type:	0
+RegDst:	1
+ALUSrc:	0
+Branch:	0
+MemRead:	0
+MemWrite:	0
+RegWrite:	1
+MemtoReg:	0
+
+[MEM_stage]
+instruction_name:	add
+implement:	1
+rs:	00101
+rt:	00110
 Write_reg:	00100
 ALU_result:	00000000000000000000000000000010
 Write_data:	00000000000000000000000000000001
@@ -375,121 +485,66 @@ MemtoReg:	0
 
 [WB_stage]
 instruction_name:	lw
-implement:	0
+implement:	1
 rs:	00000
-rt:	00011
-Write_reg:	00011
+rt:	00001
+Write_reg:	00001
 Write_data:	00000000000000000000000000000001
 RegWrite:	1
 MemtoReg:	1
 
-Cycle 8
+Cycle 10
 
 [IF_stage]
-instruction_name:	
+instruction_name:	add
 implement:	0
-PC:	16
+PC:	20
 
 [ID_stage]
-instruction_name:	
+instruction_name:	add
 implement:	0
-ins:	10101100000001000000000000011000
+ins:	00000000101001100010000000100000
 
 [EX_stage]
-instruction_name:	sw
+instruction_name:	add
 implement:	0
-rs:	00000
-rt:	00100
+rs:	00101
+rt:	00110
 Write_reg:	00100
-I_address:	0000000000011000
-Read_data1:	00000000000000000000000000000000
+I_address:	0010000000100000
+Read_data1:	00000000000000000000000000000001
 Read_data2:	00000000000000000000000000000001
 ALUOp:	1
-type:	1
-RegDst:	X
-ALUSrc:	1
+type:	0
+RegDst:	1
+ALUSrc:	0
 Branch:	0
 MemRead:	0
-MemWrite:	1
-RegWrite:	0
-MemtoReg:	X
+MemWrite:	0
+RegWrite:	1
+MemtoReg:	0
 
 [MEM_stage]
-instruction_name:	sw
-implement:	1
-rs:	00000
-rt:	00100
+instruction_name:	add
+implement:	0
+rs:	00101
+rt:	00110
 Write_reg:	00100
-ALU_result:	00000000000000000000000000011000
-Write_data:	00000000000000000000000000000010
+ALU_result:	00000000000000000000000000000010
+Write_data:	00000000000000000000000000000001
 Branch:	0
 MemRead:	0
-MemWrite:	1
-RegWrite:	0
-MemtoReg:	X
+MemWrite:	0
+RegWrite:	1
+MemtoReg:	0
 
 [WB_stage]
 instruction_name:	add
 implement:	1
-rs:	00010
-rt:	00011
+rs:	00101
+rt:	00110
 Write_reg:	00100
 Write_data:	00000000000000000000000000000010
 RegWrite:	1
 MemtoReg:	0
-
-Cycle 9
-
-[IF_stage]
-instruction_name:	
-implement:	0
-PC:	16
-
-[ID_stage]
-instruction_name:	
-implement:	0
-ins:	10101100000001000000000000011000
-
-[EX_stage]
-instruction_name:	sw
-implement:	0
-rs:	00000
-rt:	00100
-Write_reg:	00100
-I_address:	0000000000011000
-Read_data1:	00000000000000000000000000000000
-Read_data2:	00000000000000000000000000000001
-ALUOp:	1
-type:	1
-RegDst:	X
-ALUSrc:	1
-Branch:	0
-MemRead:	0
-MemWrite:	1
-RegWrite:	0
-MemtoReg:	X
-
-[MEM_stage]
-instruction_name:	sw
-implement:	0
-rs:	00000
-rt:	00100
-Write_reg:	00100
-ALU_result:	00000000000000000000000000011000
-Write_data:	00000000000000000000000000000010
-Branch:	0
-MemRead:	0
-MemWrite:	1
-RegWrite:	0
-MemtoReg:	X
-
-[WB_stage]
-instruction_name:	sw
-implement:	1
-rs:	00000
-rt:	00100
-Write_reg:	00100
-Write_data:	00000000000000000000000000000010
-RegWrite:	0
-MemtoReg:	X
 
