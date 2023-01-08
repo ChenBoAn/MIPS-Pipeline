@@ -9,7 +9,7 @@
 
 # 使用方式
 1. 將所有指令寫成一個asm.txt，並放入input資料夾中
-2. 執行程式碼後，即會產生input.txt於input資料夾中，output.txt、state.txt、register_result.txt、memory_result.txt於ouput資料夾中
+2. 執行Stall.cpp或Forwarding.cpp，即會產生input.txt於input資料夾中，及output.txt、state.txt、register_result.txt、memory_result.txt於ouput資料夾中
 
 # 專案架構
 > * 使用 c++ 模擬具有 pipeline 功能之 cpu
