@@ -15,8 +15,8 @@
 > * 使用 c++ 模擬具有 pipeline 功能之 cpu
 > * 透過 stall 或 forwarding 解決 pipeline 時會發生的所有 hazard 問題
 ## 輸入、輸出檔案及資料夾說明
-- Stall : 存放stall所需所有input和輸出結果
-- Forwarding : 存放forwarding所需所有input和輸出結果
+- Stall 資料夾 : 存放stall所需所有input和輸出結果
+- Forwarding 資料夾 : 存放forwarding所需所有input和輸出結果
 - asm.txt : MIPS組合語言
 - input.txt : 將組合語言進行編譯，所產生的instructions
 - memory_result.txt : 程序結束後，所有記憶體狀態
@@ -66,15 +66,14 @@
 
 ```
 # 程式功能說明
-## Main Fuction
-### Stall.cpp : 
-- 模擬具有stall功能的pipline cpu
+## Pipeline Main Function
+### Stall.cpp
+- 模擬具有stall功能的pipeline cpu
 - 與Forwarding.cpp共用所有header files
-### Forwarding.cpp:
-- 模擬具有forwarding功能的pipline cpu
+### Forwarding.cpp
+- 模擬具有forwarding功能的pipeline cpu
 - 與Stall.cpp共用所有header files
-## Header Files
-> 每個標頭檔皆包含一個與檔名相同的class，供主函式使用
+## CPU基本零件
 ### Instruction_Memory.h
 > 指令以 32 bits *(word)* 為單位，instruction memory 以 8 bits *(byte)* 為單位，因此抓取下一個指令時需 **PC = PC + 4**
 - 初始化時，針對asm.txt進行編碼
@@ -88,35 +87,35 @@
 > data memory 以 byte 為單位，資料以 word 為單位，所以在讀取/寫入資料的時候都必須一次處理 4 bytes
 - 讀取或寫入記憶體位置之資料
 - 輸出所有記憶體的狀態，寫檔至 *memory_result.txt*
-
-### IF.h:
+## Stages
+### IF.h
 - Instruction fetch
 - 儲存當前狀態指令名稱以及是否執行
-### ID.h:
+### ID.h
 - Instructioin decode & Register read
 - 儲存當前狀態指令名稱、是否發生stall以及是否執行
-### EX.h:
+### EX.h
 - Execute
 - 儲存當前狀態指令名稱以及是否執行
-- 儲存instruction field , all input , Opcode , control sign
-### MEM.h:
+- 儲存instruction field, all input, Opcode, control sign
+### MEM.h
 - Memory write
 - 儲存當前狀態指令名稱以及是否執行
-- 儲存instruction field , memory input , control sign
-### WB.h:
+- 儲存instruction field, memory input, control sign
+### WB.h
 - Write back
 - 儲存當前狀態指令名稱以及是否執行
-- 儲存instruction field , register input , control sign
-### State.h:
-- data member 包含 class IF , ID , EX , MEM 以及 WB
+- 儲存instruction field, register input, control sign
+## State
+### State.h
+- data member 包含 class IF, ID, EX, MEM, WB
 
 
 ## 程式碼重點
-
-### 大致流程
-> 同一cycle之Stage流程: WB Stage -> EXE Stage -> EX Stage -> ID Stage -> IF Stage
-> 為防止當前state之後續Stage的變數被前面Stage所影響、更新，因此倒置
-#### Stall 流程
+### 流程
+> 同一cycle之Stage流程: WB Stage -> MEM Stage -> EX Stage -> ID Stage -> IF Stage
+> 為防止當前state之後續Stage的變數被前面Stage的操作所影響、更新，因此倒置
+#### Stall
 ``` c++
 
 State current_state; //紀錄當前狀態有哪些stages須執行，以及每一個stage的資料
@@ -154,8 +153,8 @@ while(1){
     //* 透過IF的PC 讀取instruction memory(IM)的指令:
     // instruction = IM.read(PC)
     //* PC = PC + 4
-    /*----------------------------------------------*/
     
+    /*----------------------------------------------*/
     // 當所有Stages都不執行時，即為結束 break
     
     // 儲存每個cycle結束後的狀態
@@ -165,7 +164,7 @@ while(1){
     current_state = next_state;
 }
 ```
-#### Forwarding 流程
+#### Forwarding
 ``` c++
 
 State current_state; //紀錄當前狀態有哪些stages須執行，以及每一個stage的資料
@@ -205,8 +204,8 @@ while(1){
     //* 透過IF的PC 讀取instruction memory(IM)的指令:
     // instruction = IM.read(PC)
     //* PC = PC + 4
-    /*----------------------------------------------*/
     
+    /*----------------------------------------------*/
     // 當所有Stages都不執行時，即為結束 break
     
     // 儲存每個cycle結束後的狀態
@@ -395,18 +394,15 @@ while(1){
         current_state.EX_stage.Read_data2 = current_state.MEM_stage.ALU_result;
     }
     ```
-
-    
 ### bitset
 > 需大量處理2進位資料，因此引入bitset。利用此型態，不管是處理shift、extend、轉十進位及轉為字串都十分快速且方便
 
 ## 問題與解決方法
-
 1. 有states的程式碼，debug具有一定難度
     * solution 1 : 將每個cycle中，所有stages的訊息詳細印出來，藉此判斷在哪個出現問題
     * solution 2 : 設立多個中斷點，以利看出是哪一步出現問題
 2. 如何用github協作專題，經常發生嚴重merge conflict
-    * solution 1 : 隨時更新當前進度，不要太久沒merge
+    * solution 1 : 隨時更新當前進度，不要太久沒merge，若檔案有新增、刪除、修改皆須注意
     * solution 2 : 將源代碼pull到local，與自己的code merge，將conflict解決後再重新發送pull request
 3. 思考整個程式基礎框架，需哪些標頭檔及其內容
     * solution 1 : 依上課投影片介紹，規劃每個stage的input與output，及control sign於各階段的使用情形，並且將IM、RF、DM的功能實做出來
@@ -415,14 +411,14 @@ while(1){
     * solution 1 : 上網查詢指令之opcode與funct
     * solution 2 : 須明確了解所有指令instruction field功能及差別
     * solution 3 : 因錯誤通常都不明顯，花費大量時間debug
-5. Stall與Forwarding的判斷
+5. Stall與Forwarding中，所有Hazard的實作
     * solution 1 : 查閱ppt與網路資料
-    * solution 2 : 仔細思考所有條件並瘋狂debug
+    * solution 2 : 仔細思考所有Hazard的觸發條件和當前state的各stages之狀態，及觸發時應採取的動作，並瘋狂debug
 
 ## 工作分配
 |      | 工作內容               |
 | ---- | ---------------------- |
-| 沈品豪 | forwarding、word|
-| 黃泓茗 | stall、forwarding、readme|
-| 鄭惠心 | stall、word|
-| 陳柏安 | stall、forwarding、readme|
+| A1095502 沈品豪 | Forwarding、Word|
+| A1095517 黃泓茗 | Stall、Forwarding、README、Forwarding範例答案計算|
+| A1095521 鄭惠心 | Stall、Word、Forwarding範例答案計算|
+| A1095557 陳柏安 | 標頭檔、Stall、Forwarding、README|
